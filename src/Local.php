@@ -33,9 +33,10 @@ class Local
      */
     public static function uploadLocalImg($file)
     {
-        $suffix_img = [//图片允许后缀
-            "png", "jpg", "gif", "bmp", "jpeg", "jpe",
-        ];
+//        $suffix_img = [//图片允许后缀
+//            "png", "jpg", "gif", "bmp", "jpeg", "jpe",
+//        ];
+        $suffix_img = Config('jiugeUpload.suffixImg');
         if($file->isValid()){
             $allowed_extensions = $suffix_img;
             if ($file->getClientOriginalExtension() &&
@@ -59,7 +60,8 @@ class Local
      */
     public static function uploadExcel($request,$imgName='excel')
     {
-        $uploadSizeLimit = 10 * 1024 * 1023;//限制上传图片尺寸10M
+//        $uploadSizeLimit = 10 * 1024 * 1023;//限制上传图片尺寸10M
+        $uploadSizeLimit = Config('jiugeUpload.uploadSizeLimit');
         if($request->hasFile($imgName)){//判断图片存在
             if ($_FILES[$imgName]['size'] > $uploadSizeLimit) {
                 echo "<script>alert('文件过大！');history.go(-1);</script>";exit;

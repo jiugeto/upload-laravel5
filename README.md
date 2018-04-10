@@ -21,3 +21,6 @@ Upload::upload($request,$fileName);
 -       $request是 use Illuminate\Http\Request;
 -       $fileName是 表单里面的文件字段名称 name=""
 #返回结果是上传完毕的文件地址
+#将jiugeto\UploadLaravel5\Config\jiugeUpload.php文件拷贝到config目录中，并填写好对应参数
+#阿里云OSS、七牛云存储，都要先注册对应账号，
+#然后获取对应的域名DOMAIN、账号KEY、密钥SECRET、存储块BUCKET

@@ -17,7 +17,8 @@ class QiniuUpload
      */
     public static function uploadOnlyImg($request,$imgName='url_ori')
     {
-        $uploadSizeLimit = 10 * 1024 * 1023;//限制上传图片尺寸10M
+//        $uploadSizeLimit = 10 * 1024 * 1023;//限制上传图片尺寸10M
+        $uploadSizeLimit = Config('jiugeUpload.uploadSizeLimit');
         if($request->hasFile($imgName)){//判断图片存在
             if ($_FILES[$imgName]['size'] > $uploadSizeLimit) {
                 echo "<script>alert('图片过大！');history.go(-1);</script>";exit;
@@ -35,10 +36,10 @@ class QiniuUpload
      */
     private static function getToken()
     {
-        $accessKey = config('qiniu.accessKey');
-        $secretKey = config('qiniu.secretKey');
+        $accessKey = config('jiugeUpload.qiniu.accessKey');
+        $secretKey = config('jiugeUpload.qiniu.secretKey');
         $auth = new Auth($accessKey, $secretKey);
-        $bucket = config('qiniu.bucket');//上传空间名称
+        $bucket = config('jiugeUpload.qiniu.bucket');//上传空间名称
         return $auth->uploadToken($bucket);//生成token
     }
 
@@ -49,7 +50,7 @@ class QiniuUpload
     {
         if (!$file) { return ''; }
         $token = QiniuUpload::getToken();
-        $uploadManager=new UploadManager();
+        $uploadManager = new UploadManager();
         $name = date('Ymd',time()).'-'.uniqid().'.'.$file->getClientOriginalExtension();
         $filePath = $_FILES[$imgName]['tmp_name'];
         $type = $_FILES[$imgName]['type'];
@@ -57,7 +58,7 @@ class QiniuUpload
         if($err){//上传失败
             dd($err);
         }else{//成功
-            return config('qiniu.domain').'/'.$ret['key'];
+            return config('jiugeUpload.domain').'/'.$ret['key'];
         }
     }
 
@@ -67,9 +68,9 @@ class QiniuUpload
     public static function deleteFile($path)
     {
         if (!$path) { return ''; }
-        $accessKey = config('qiniu.accessKey');
-        $secretKey = config('qiniu.secretKey');
-        $bucket = config('qiniu.bucket');
+        $accessKey = config('jiugeUpload.qiniu.accessKey');
+        $secretKey = config('jiugeUpload.qiniu.secretKey');
+        $bucket = config('jiugeUpload.qiniu.bucket');
         $auth = new Auth($accessKey, $secretKey);
         $bucketMgr = new BucketManager($auth);
         $files = explode('/',$path);

@@ -4,13 +4,13 @@
  */
 return array(
     'to' => 'local', //上传目标：local，ali，qiniu
+    'domain' => '', //上传到的域名
+    'uploadSizeLimit' => '', //上传的文件大小限制
+    'suffixImg' => array(), //上传的文件后缀
     'ali' => array(
         'accessKeyId' => '',
         'accessKeySecret' => '',
-        'endpoint' => '',
         'bucket' => '',
-        'uploadSizeLimit' => '',
-        'suffixImg' => '',
     ),
     'qiniu' => array(
         'accessKey' => '',
