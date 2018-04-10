@@ -18,5 +18,5 @@ php artisan optimize
 use JiugeTo\UploadLaravel5\Upload;
 Upload::upload($request,$fileName);
 - 说明：$request是 use Illuminate\Http\Request;
-        $fileName是 表单里面的文件字段名称 name=""
-        返回结果是上传完毕的文件地址
+-       $fileName是 表单里面的文件字段名称 name=""
+-       返回结果是上传完毕的文件地址
