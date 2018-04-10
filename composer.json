@@ -1,0 +1,26 @@
+{
+    "name": "jiugeto/upload-laravel5",
+    "description": "upload for laravel5",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "jiuge",
+            "email": "946493655@qq.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "JiugeTo\\UploadLaravel5\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    }
+}
